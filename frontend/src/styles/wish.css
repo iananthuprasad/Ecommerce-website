@@ -40,6 +40,8 @@ padding: .5rem;
   align-items: center;
 }
 .buy{
-    position: absolute;
-    right: 18%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+    margin-right: 30%;
 }

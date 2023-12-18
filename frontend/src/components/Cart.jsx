@@ -68,7 +68,13 @@ const Cart = () => {
       </div>
       <div className="container">
         {cartlist == "" ? (
-          <div style={{ display: "flex", justifyContent: "center", alignItems:"center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {" "}
             <img src="https://hsnbazar.com/images/empty-cart.png"></img>{" "}
           </div>
@@ -128,9 +134,9 @@ const Cart = () => {
                   <h4>${totalAmount}</h4>
                 </span>
               </p>
-            </div>
-            <div onClick={buy} className="buy">
-              <Button>BUY NOW</Button>
+              <div onClick={buy} className="buy">
+                <Button>BUY NOW</Button>
+              </div>
             </div>
           </>
         )}

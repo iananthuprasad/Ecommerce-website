@@ -34,7 +34,7 @@ html{
 }
 
 .cardimg{
-    height: 20rem;
+    min-height: 20rem;
 }
 .cardbody{
    text-align: center; 
