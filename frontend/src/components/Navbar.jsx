@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/nav.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import {
   faCartShopping,
   faHeart,
@@ -13,38 +13,34 @@ import {
 import { Mycontext } from "../Context";
 
 const Navbar = () => {
-  const{items,setItems}=useContext(Mycontext)
-  const {search,setSearch}=useContext(Mycontext)
-  const{matcheditems,setMatcheditems}=useContext(Mycontext)
- const {username,setUsername}=useContext(Mycontext)
- const { cartlist, setCartlist } = useContext(Mycontext);
-  const [menu, setMenu] = useState("shop");
+  const { items, setItems } = useContext(Mycontext);
+  const { search, setSearch } = useContext(Mycontext);
+  const { matcheditems, setMatcheditems } = useContext(Mycontext);
+  const { username, setUsername } = useContext(Mycontext);
+  const { cartlist, setCartlist } = useContext(Mycontext);
 
- const nav=useNavigate();
- console.log(menu)
+  const nav = useNavigate();
 
-  
-
-
- function handleInputChange(e) {
+  function handleInputChange(e) {
     const inputText = e.target.value;
     setSearch(inputText);  
- }
- function searchitem(){
-       const matched = items.filter((item) =>
-       item.description.toLowerCase().includes(search.toLowerCase()) ||
-       item.name.toLowerCase().includes(search.toLowerCase()));
-       setMatcheditems(matched)      
- }
- const profile=()=>{
-  if(username==''){
-  alert("plese login to show userdetails")
   }
-  else{
-    nav("/userdetails")
-  }
- }
 
+  function searchitem() {
+    const matched = items.filter((item) =>
+      item.description.toLowerCase().includes(search.toLowerCase()) ||
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setMatcheditems(matched);      
+  }
+
+  const profile = () => {
+    if (username === '') {
+      alert("Please login to show user details");
+    } else {
+      nav("/userdetails");
+    }
+  }
 
   return (
     <div className="body">
@@ -52,47 +48,44 @@ const Navbar = () => {
         <div className="nav-container">
           <div>
             <img
-              src="https://t3.ftcdn.net/jpg/05/16/27/60/240_F_516276029_aMcP4HU81RVrYX8f5qCAOCCuOiCsu5UF.jpg "
+              src="https://t3.ftcdn.net/jpg/05/16/27/60/240_F_516276029_aMcP4HU81RVrYX8f5qCAOCCuOiCsu5UF.jpg"
               className="logo"
-            ></img>
+              alt="Logo"
+            />
           </div>
           <div className="nav">
             <ul className="nav1">
-              <li
-                onClick={() => {
-                  setMenu("shop");
-                }}
-              >
-                <Link to="/">
-                  shop {menu === "shop" ? <hr className="hr" /> : <></>}
-                </Link>
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Shop
+                </NavLink>
               </li>
-              <li
-                onClick={() => {
-                  setMenu("men");
-                }}
-              >
-                <Link to="/men">
-                  Men {menu === "men" ? <hr className="hr" /> : <></>}
-                </Link>
+              <li>
+                <NavLink
+                  to="/men"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Men
+                </NavLink>
               </li>
-              <li
-                onClick={() => {
-                  setMenu("women");
-                }}
-              >
-                <Link to="/women">
-                  Women {menu === "women" ? <hr className="hr" /> : <></>}
-                </Link>
+              <li>
+                <NavLink
+                  to="/women"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Women
+                </NavLink>
               </li>
-              <li
-                onClick={() => {
-                  setMenu("kids");
-                }}
-              >
-                <Link to="/kids">
-                  Kids{menu === "kids" ? <hr className="hr" /> : <></>}
-                </Link>
+              <li>
+                <NavLink
+                  to="/kids"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                >
+                  Kids
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -100,7 +93,7 @@ const Navbar = () => {
             <input
               type="text"
               onChange={handleInputChange}
-              placeholder="search items here"
+              placeholder="Search items here"
             />
             <button onClick={searchitem}>
               <FontAwesomeIcon icon={faSearch} />
@@ -111,20 +104,20 @@ const Navbar = () => {
               <li>
                 <Link to="/wish">
                   <FontAwesomeIcon icon={faHeart} />
-                  <span className="shop-nav-icon">wishlist</span>
+                  <span className="shop-nav-icon">Wishlist</span>
                 </Link>
               </li>
               <li>
                 <Link to="/cart">
                   <FontAwesomeIcon icon={faCartShopping} />
-                  <span className="shop-nav-icon">{cartlist.length} cart</span>
+                  <span className="shop-nav-icon">{cartlist.length} Cart</span>
                 </Link>
               </li>
               <li>
                 <Link to="/register">
                   <FontAwesomeIcon icon={faSignInAlt} />
                   <span className="shop-nav-icon">
-                    {username == "" ? <>Login</> : <>Logout</>}
+                    {username === "" ? "Login" : "Logout"}
                   </span>
                 </Link>
               </li>
@@ -143,3 +136,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

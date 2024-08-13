@@ -354,7 +354,7 @@ export const products = [
     id: "41",
     name: "shirt",
     price: "599",
-    image: "",
+    image: "https://assets.ajio.com/medias/sys_master/root/20230621/WBBR/64927c4042f9e729d766dc33/-473Wx593H-464106323-black-MODEL.jpg",
     category: "kids",
     description: "",
   },
